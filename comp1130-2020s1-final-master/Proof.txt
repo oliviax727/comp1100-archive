@@ -1,0 +1,54 @@
+8 i) Put your answer here:
+
+Just (helper x xs)  = rLast (x:xs) 
+
+8 ii) Put your answer here:
+
+-- Base Case #1 a.k.a. BC1
+Just (helper x []) = rLast (x:[])
+
+-- Base Case #2 a.k.a. BC2
+Just (helper x (y:[])) = rLast (x:y:[])
+
+8 iii) Put your answer here:
+
+-- Proof of BC1
+Just (helper x [])
+= Just x           -- (H1)
+= rLast [x]        -- (R2)
+= rLast (x:[])
+
+-- Proof of BC2
+Just (helper x (y:[]))
+= Just (helper y [])    -- (H2)
+= rLast (y:[])          -- (BC1)
+= rLast (x:y:[])        -- (R3)
+
+8 iv) Put your answer here:
+
+for all x: Just (helper x xs)  = rLast (x:xs)
+
+8 v) Put your answer here:
+
+Just (helper x (y:xs))  = rLast (x:y:xs)
+
+8 vi) Put your answer here:
+
+rLast (x:y:xs)
+= rLast (y:xs)           -- (R3)
+= Just (helper y xs)     -- (IH)
+= Just (helper x (y:xs)) -- (H2)
+
+8 vii) Put your answer here:
+
+-- Proof of empty case
+lLast []
+= Nothing   -- (L1)
+= rLast []  -- (R1)
+
+-- Proof of non-empty case
+lLast (x:xs)
+= Just (helper x xs)   -- (L2)
+= rLast (x:xs)         -- (Lemma1)
+
+Therefore, by extensionality, if (for all xs: lLast xs = rLast xs) then lLast = rLast.

@@ -1,0 +1,109 @@
+Question 7
+
+i)
+
+LAZY
+(\x.(\y.x y) y)((\z.z) y)
+-> (\x.(\w.x w) y)((\z.z) y)
+-> (\w.((\z.z) y) w) y
+-> ((\z.z) y) y
+-> y y
+
+ii)
+
+EAGER
+(\x.(\y.x y) y)((\z.z) y)
+-> (\x.(\w.x w) y) y
+-> (\w.y w) y
+-> y y
+
+iii)
+
+Y = \f.(\x.f (x x))(\x.f (x x))
+
+Y F
+= (\f.(\x.f (x x))(\x.f (x x))) F
+-> ((\x.F (x x))(\x.F (x x)))
+-> F ((\x.F (x x)) (\x.F (x x)))
+-> F ((\f.(\x.f (x x))(\x.f (x x))) F)  (Church-Rosser Theorem)
+= F (Y F)
+
+iv)
+
+G = \f.\n.\m. if (isZero n) then true else (if (isZero m) then False else (f (pred n) (pred m)))
+
+(<=) = \n.\m.Y G n m
+ 
+Question 8
+
+length (xs ++ [x]) = length xs + 1  -- Lemma1
+
+i)
+
+length (helper xs ys) = length xs + length (helper [] ys)    -- Lemma2
+
+ii)
+
+length (helper xs []) = length xs + length (helper [] [])
+
+iii)
+
+length xs + length (helper [] [])
+= length xs + length []             -- H1
+= length xs + 0                     -- L1
+= length xs                         -- Math
+= length (helper xs [])             -- H1
+
+iv)
+
+For all xs, ys: length (helper xs ys) = length xs + length (helper [] ys)
+
+v)
+
+length (helper xs (y:ys))
+= length (helper (y:(xs ++ [y])) ys)                            -- H2
+= length (y:(xs ++ [y])) + length (helper [] ys)                -- IH
+= 1 + length (xs ++ [y]) + length (helper [] ys)                -- L2
+= 1 + 1 + length xs + length (helper [] ys)                     -- Lemma1
+= length xs + 1 + length ([] ++ [y]) + length (helper [] ys)    -- Lemma1, Commutativiy of Addition
+= length xs + length (y:([] ++ [y])) + length (helper [] ys)    -- L2
+= length xs + length (helper (y:([] ++ [y])) ys))               -- IH
+= length xs + length (helper [] (y:ys))                         -- H2
+
+
+length xs + length (helper [] (y:ys))
+= length xs + length (helper (y:([] ++ [y])) ys))
+= length xs + length (y:([] ++ [y])) + length (helper [] ys)
+= length xs + 1 + length ([] ++ [y]) + length (helper [] ys)
+
+Therefore, length (helper xs (y:ys)) = length xs + length (helper [] (y:ys))
+
+vi)
+
+BASE CASE:
+length (mirror [])
+= length (helper [] [])     -- M1
+= length []                 -- H1
+= 0                         -- L1
+= 2 * 0                     -- Math
+= 2 * length []             -- L1
+
+INDUCTIVE HYP:
+
+length (mirror xs) = 2 * length xs
+
+STEP CASE:
+
+length (mirror (x:xs))
+= length (helper [] (x:xs))                         -- M1
+= length (helper (x:([] ++ [x])) xs)                -- H2
+= length (x:([] ++ [x])) + length (helper [] xs)    -- Lemma2
+= 1 + length ([] ++ [x]) + length (helper [] xs)    -- L2
+= 1 + length [] + 1 + length (helper [] xs)         -- Lemma1
+= 1 + 1 + length (helper [] xs)                     -- L1
+= 1 + 1 + length (mirror xs)                        -- M1
+= 2 + 2 * length xs                                 -- IH
+= 2 * (1 + length xs)                               -- Math
+= 2 * length (x:xs)                                 -- L2
+
+Therefore: length (mirror xs) = 2 * length xs

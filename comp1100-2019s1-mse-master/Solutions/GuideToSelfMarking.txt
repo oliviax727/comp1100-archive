@@ -1,0 +1,49 @@
+This document will provide brief answers to the 2019 Semester 1 midterm exam,
+which was used for self-assessment by 2020 Semester 1 students for self
+assessment due to the cancellation of the midterm exam. If you wish to discuss
+why the answers are as they are, please use the Piazza forum.
+
+QUESTION 1
+2.5 marks for correct, no penalty for incorrect:
+i)   option 2: (3,left)
+ii)  option 4: (3,False)
+iii) option 2: -4
+iv)  option 3: Int -> (Int | Int)
+v)   option 4: This function cannot be given a type because its return value
+               cannot be given a type
+vi)  option 3: bar :: Char -> String -> String
+
+QUESTION 2
+1 mark for correct, 0 for no answer given, -0.5 for incorrect (minimum of 0 for
+whole question):
+i)   False
+ii)  True
+iii) After discussions with students it was decided that this question was
+     ambiguous, and all students received 1 mark (the intention was for it to
+     be False, as some functions do not return any answer at all)
+iv)  True
+v)   True
+
+QUESTION 3
+Run "cabal v2-test --test-show-details=streaming DaysOfTheWeekTest".
+You get 1 mark for each test that passes.
+You receive 0 marks if the code does not succesfully run.
+
+QUESTION 4
+Run "cabal v2-test --test-show-details=streaming ParticipantsTest".
+Marking is the same as Question 3.
+
+QUESTION 5
+Run "cabal v2-test --test-show-details=streaming PositiveIntsTest".
+Marking is the same as Question 3.
+
+QUESTION 6
+Run "cabal v2-test --test-show-details=streaming ApproximatingTwoTest".
+Marking is the same as Question 3.
+
+QUESTION 7 (1130 ONLY)
+2.5 marks for correct, no penalty for incorrect:
+i)   option 3: (\u.v)(w x \y.z)
+ii)  option 2: {w,x}
+iii) option 3: (\w.\y.\z.z y) y
+iv)  option 5: z z x

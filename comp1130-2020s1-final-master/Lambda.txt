@@ -1,0 +1,60 @@
+7 i) Put your answer here:
+
+EAGER
+(\x.x (\y.x) (\x.x y)) ((\z.z) x)
+-> (\x.x (\y.x) (\x.x y)) x
+-> x (\y.x) (\x.x y)
+-> x (\y.x) y
+
+7 ii) Put your answer here:
+
+LAZY
+(\x.x (\y.x) (\x.x y)) ((\z.z) x)
+-> (\z.z) x (\y.x) (\x.x y)
+-> x (\y.x) (\x.x y)
+
+7 iii) Put your answer here:
+
+add = \f.\x.\y. if (isZero y) then x else (f (succ x) (pred y))
+
+double = \n.Y add n n
+
+7 iv) Put your answer here:
+
+true  = \x.\y.x y
+false = \x.\y.y x
+not   = \w.\x.\y.w y x
+
+not true
+= (\w.\x.\y.w y x) (\x.\y.x y)
+-> \x.\y.(\x.\y.x y) y x
+-> \x.\y.(\x.\w.x w) y x
+-> \x.\y.(\w.y w) x
+-> \x.\y.y x
+= false
+
+7 v) Put your answer here:
+
+SOLUTION:
+
+fst = \x.\y.x
+
+if a then b else c = a (\x.x) (\x.\y.x) b c
+
+7 vi) Put your answer here:
+
+if true then a else b
+= (\x.\y.x y) (\x.x) (\x.\y.x) b c
+-> (\y.(\x.x) y) (\x.\y.x) b c
+-> (\x.x) (\x.\y.x) b c
+-> (\x.\y.x) b c
+-> (\y.b) c
+-> b
+
+if false then a else b
+= (\x.\y.y x) (\x.x) (\x.\y.x) b c
+-> (\y.y (\x.x)) (\x.\y.x) b c
+-> (\x.\y.x) (\x.x) b c
+-> (\y.\x.x) b c
+-> (\x.x) c
+-> c

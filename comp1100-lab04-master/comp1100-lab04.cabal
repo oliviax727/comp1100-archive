@@ -1,0 +1,27 @@
+name:                comp1100-lab04
+version:             0.1.0
+description:         Drawing simple shapes with codeworld-api
+homepage:            https://cs.anu.edu.au/courses/comp1100
+license:             BSD3
+license-file:         LICENSE
+author:              Debashish Chakraborty, Joshua Corner, Tony Hosking
+maintainer:          debashish.chakraborty@anu.edu.au
+copyright:           2020 The Australian National University
+category:            Education
+build-type:          Simple
+cabal-version:       >= 2.0
+extra-source-files:   lab04.md
+
+source-repository head
+  type:                git
+  location:            https://gitlab.cecs.anu.edu.au/comp1100/Labs/Lab04.git
+
+executable Main
+  hs-source-dirs:      src
+  main-is:             Main.hs
+  default-language:    Haskell2010
+  other-modules:       View, Model, Controller
+  build-depends:       base >= 4.11 && < 5
+                     , codeworld-api >= 0.4 && < 0.7
+                     , doctest
+  ghc-options:         -Wall -threaded
